@@ -1,10 +1,34 @@
 {
   "users": [
-    { "id": 1, "name": "Viktor", "email": "test@test.com" },
-    { "id": 2, "name": "Victory", "email": "example@test.com" }
+    { "id": 1, "name": "Viktor", "email": "test@test.com", "roleId": 1 },
+    { "id": 2, "name": "Victory", "email": "example@test.com", "roleId": 2 },
+    { "id": 3, "name": "Lena", "email": "lena12@example.com", "roleId": 3 },
+    { "id": 4, "name": "Maxim", "email": "max.dev@test.io", "roleId": 6 },
+    { "id": 5, "name": "Olha", "email": "olha_k@example.com", "roleId": 4 },
+    { "id": 6, "name": "Ivan", "email": "ivan234@test.com", "roleId": 4 },
+    { "id": 7, "name": "Nastia", "email": "nastia.n@testmail.com", "roleId": 5 },
+    { "id": 8, "name": "Taras", "email": "taras_dev@codehub.com", "roleId": 3 },
+    { "id": 9, "name": "Oksana", "email": "oksana.design@example.org", "roleId": 4 },
+    { "id": 10, "name": "Yurii", "email": "yurii88@domain.com", "roleId": 4 }
   ],
   "tasks": [
     { "id": 1, "description": "Create angular application" },
-    { "id": 2, "description": "Create mock database" }
+    { "id": 2, "description": "Create mock database" },
+    { "id": 3, "description": "Implement user authentication" },
+    { "id": 4, "description": "Design landing page layout" },
+    { "id": 5, "description": "Set up CI/CD pipeline" },
+    { "id": 6, "description": "Write unit tests for services" },
+    { "id": 7, "description": "Create reusable components" },
+    { "id": 8, "description": "Integrate API endpoints" },
+    { "id": 9, "description": "Fix layout bugs on mobile" },
+    { "id": 10, "description": "Deploy app to staging server" }
+  ],
+  "roles": [
+    { "id": 1, "name": "admin" },
+    { "id": 2, "name": "manager" },
+    { "id": 3, "name": "teamLead" },
+    { "id": 4, "name": "developer" },
+    { "id": 5, "name": "BA" },
+    { "id": 6, "name": "QA" }
   ]
 }

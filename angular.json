@@ -133,7 +133,8 @@
               }
             ],
             "styles": [
-              "projects/apps/admin/src/styles.scss"
+              "projects/apps/admin/src/styles.scss",
+              "node_modules/primeflex/primeflex.scss"
             ],
             "scripts": [],
             "server": "projects/apps/admin/src/main.server.ts",

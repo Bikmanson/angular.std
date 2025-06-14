@@ -1,0 +1,30 @@
+@if (user) {
+  <div class="p-fluid p-formgrid p-grid p-mt-3 p-px-3">
+
+    <div class="p-field p-col-12 p-mb-3">
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-user"></i>
+        </p-inputgroup-addon>
+        <input pInputText [(ngModel)]="user.name" placeholder="Username" />
+      </p-inputgroup>
+    </div>
+
+    <div class="p-field p-col-12 p-mb-3">
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-envelope"></i>
+        </p-inputgroup-addon>
+        <input pInputText [(ngModel)]="user.email" placeholder="Email" />
+      </p-inputgroup>
+    </div>
+
+    <div class="p-col-12 p-text-right">
+      <p-button label="Save" icon="pi pi-save" class="p-button-primary" (click)="onSave()"/>
+    </div>
+
+  </div>
+} @else {
+  No user found
+}
+
