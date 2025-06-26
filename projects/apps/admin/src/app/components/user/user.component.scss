@@ -1,0 +1,69 @@
+$info-color: #0dcaf0;
+$success-color: #198754;
+$danger: #dc3545;
+
+.form {
+  padding: 10px;
+  box-shadow: 1px 1px 10px gainsboro;
+
+  .field-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .field-group {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .label {
+    width: 50px;
+    display: block;
+    margin-right: 10px;
+  }
+
+  .field {
+    width: 360px;
+    display: block;
+    margin: 10px 0;
+  }
+
+  .select {
+    min-width: 360px;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    .button {
+      border-radius: 8px;
+      padding: 8px 15px;
+      margin-right: 5px;
+      background: $info-color;
+      color: white;
+      cursor: pointer;
+      align-items: center;
+
+      &-save {
+        background: $success-color;
+
+        &:hover {
+          background: lighten($success-color, 5%);
+        }
+      }
+
+      &-cancel {
+        background: $danger;
+
+        &:hover {
+          background: lighten($danger, 5%);
+        }
+      }
+    }
+  }
+}

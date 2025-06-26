@@ -1,30 +1,23 @@
-@if (user) {
-  <div class="p-fluid p-formgrid p-grid p-mt-3 p-px-3">
-
-    <div class="p-field p-col-12 p-mb-3">
-      <p-inputgroup>
-        <p-inputgroup-addon>
-          <i class="pi pi-user"></i>
-        </p-inputgroup-addon>
-        <input pInputText [(ngModel)]="user.name" placeholder="Username" />
-      </p-inputgroup>
+<app-alert [message]="alertMessage" [show$]="showAlert" [type]="alertType"></app-alert>
+<form [formGroup]="form" class="form">
+  <div class="field-container">
+    <div class="field-group">
+      <label for="nameInput" class="label">Name:</label>
+      <input id="nameInput" pInputText formControlName="name" class="field">
     </div>
-
-    <div class="p-field p-col-12 p-mb-3">
-      <p-inputgroup>
-        <p-inputgroup-addon>
-          <i class="pi pi-envelope"></i>
-        </p-inputgroup-addon>
-        <input pInputText [(ngModel)]="user.email" placeholder="Email" />
-      </p-inputgroup>
+    <div class="field-group">
+      <label for="emailInput" class="label">Email:</label>
+      <input id="emailInput" pInputText formControlName="email" class="field">
     </div>
-
-    <div class="p-col-12 p-text-right">
-      <p-button label="Save" icon="pi pi-save" class="p-button-primary" (click)="onSave()"/>
+    <div class="field-group">
+      <label for="roleSelect" class="label">Role:</label>
+      <div id="roleSelect" class="field">
+        <p-select [options]="roles" formControlName="roleId" optionLabel="name" optionValue="id" class="select"/>
+      </div>
     </div>
-
   </div>
-} @else {
-  No user found
-}
-
+  <div class="action-buttons">
+    <div (click)="back()" class="button button-cancel">Cancel</div>
+    <div (click)="onSave()" class="button button-save">Save</div>
+  </div>
+</form>
