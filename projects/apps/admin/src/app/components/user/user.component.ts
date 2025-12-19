@@ -1,23 +1,29 @@
-import {combineLatest, Observable, Subject} from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
-import {InputGroupModule} from 'primeng/inputgroup';
-import {InputGroupAddonModule} from 'primeng/inputgroupaddon';
-import {Select} from 'primeng/select';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { Select } from 'primeng/select';
 
-import {Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {CommonModule} from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-import {GatewayService} from '@shared/services/gateway.service';
-import {GET_ROLES, GET_USERS} from '@shared/constants/link.constant';
-import {AlertComponent} from '@shared/components/alert/alert.component';
-import {AlertType} from '@shared/components/alert/types/alert.type';
+import { GatewayService } from '@shared/services/gateway.service';
+import { GET_ROLES, GET_USERS } from '@shared/constants/link.constant';
+import { AlertComponent } from '@shared/components/alert/alert.component';
+import { AlertType } from '@shared/components/alert/types/alert.type';
 
-import {IRole} from '../../interfaces/role.interface';
-import {IUser} from '../../interfaces/user.interface';
+import { IRole } from '../../interfaces/role.interface';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-user',
@@ -39,7 +45,7 @@ import {IUser} from '../../interfaces/user.interface';
 export class UserComponent implements OnInit {
   gateway = inject(GatewayService);
   route = inject(ActivatedRoute);
-  router: Router = inject(Router)
+  router: Router = inject(Router);
 
   user$!: Observable<IUser>;
   roles$!: Observable<IRole[]>;
@@ -65,17 +71,16 @@ export class UserComponent implements OnInit {
 
   onSave(): void {
     if (this.form.valid) {
-      this.gateway.patch<IUser>(this.usersEndpoint, this.form.getRawValue())
-        .subscribe(() => {
-          this.alertType = 'success';
-          this.alertMessage = 'The user data is updated';
-          this.showAlert.next();
-        });
+      this.gateway.patch<IUser>(this.usersEndpoint, this.form.getRawValue()).subscribe(() => {
+        this.alertType = 'success';
+        this.alertMessage = 'The user data is updated';
+        this.showAlert.next();
+      });
     }
   }
 
   back() {
-    this.router.navigate(['admin', 'users'])
+    this.router.navigate(['admin', 'users']);
   }
 
   private initUsersEndpoint() {

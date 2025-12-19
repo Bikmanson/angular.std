@@ -1,17 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TableModule} from 'primeng/table';
-import {CommonModule} from '@angular/common';
-import {ITableRowClick} from '@shared/interfaces/table-row-click.interface';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TableModule } from 'primeng/table';
+import { CommonModule } from '@angular/common';
+import { ITableRowClick } from '@shared/interfaces/table-row-click.interface';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [
-    TableModule,
-    CommonModule
-  ],
+  imports: [TableModule, CommonModule],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.scss',
 })
 export class TableComponent<T extends Record<string, any>> implements OnInit {
   @Input() data!: T[];
@@ -28,7 +25,7 @@ export class TableComponent<T extends Record<string, any>> implements OnInit {
   }
 
   onRowClick(item: T, column: string) {
-    this.rowClick.emit({item, column});
+    this.rowClick.emit({ item, column });
   }
 
   noSort = () => 0;

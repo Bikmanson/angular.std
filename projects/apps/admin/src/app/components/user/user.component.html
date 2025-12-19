@@ -3,16 +3,22 @@
   <div class="field-container">
     <div class="field-group">
       <label for="nameInput" class="label">Name:</label>
-      <input id="nameInput" pInputText formControlName="name" class="field">
+      <input id="nameInput" pInputText formControlName="name" class="field" />
     </div>
     <div class="field-group">
       <label for="emailInput" class="label">Email:</label>
-      <input id="emailInput" pInputText formControlName="email" class="field">
+      <input id="emailInput" pInputText formControlName="email" class="field" />
     </div>
     <div class="field-group">
       <label for="roleSelect" class="label">Role:</label>
       <div id="roleSelect" class="field">
-        <p-select [options]="roles" formControlName="roleId" optionLabel="name" optionValue="id" class="select"/>
+        <p-select
+          [options]="roles"
+          formControlName="roleId"
+          optionLabel="name"
+          optionValue="id"
+          class="select"
+        />
       </div>
     </div>
   </div>

@@ -1,14 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Message} from 'primeng/message';
-import {Subject} from 'rxjs';
-import {AlertType} from '@shared/components/alert/types/alert.type';
+import { Component, Input, OnInit } from '@angular/core';
+import { Message } from 'primeng/message';
+import { Subject } from 'rxjs';
+import { AlertType } from '@shared/components/alert/types/alert.type';
 
 @Component({
   selector: 'app-alert',
   standalone: true,
   imports: [Message],
   templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss'
+  styleUrl: './alert.component.scss',
 })
 export class AlertComponent implements OnInit {
   @Input() show$!: Subject<void>;
@@ -25,6 +25,6 @@ export class AlertComponent implements OnInit {
       setTimeout(() => {
         this.show = false;
       }, this.time + 1000);
-    })
+    });
   }
 }

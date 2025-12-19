@@ -1,0 +1,106 @@
+<div class="task-list-container">
+  <div class="header">
+    <h1>My Tasks</h1>
+    <p class="subtitle">View and manage your assigned tasks</p>
+  </div>
+
+  <div class="filters-section">
+    <div class="filter-group">
+      <label for="search">Search</label>
+      <input
+        id="search"
+        type="text"
+        pInputText
+        placeholder="Search tasks..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="searchTerm.set($event)"
+      />
+    </div>
+
+    <div class="filter-group">
+      <label for="status">Status</label>
+      <p-select
+        id="status"
+        [options]="statusOptions"
+        [(ngModel)]="selectedStatus"
+        (ngModelChange)="selectedStatus.set($event)"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Filter by status"
+      />
+    </div>
+
+    <div class="filter-group">
+      <label for="priority">Priority</label>
+      <p-select
+        id="priority"
+        [options]="priorityOptions"
+        [(ngModel)]="selectedPriority"
+        (ngModelChange)="selectedPriority.set($event)"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Filter by priority"
+      />
+    </div>
+  </div>
+
+  <div class="tasks-summary">
+    <p>Showing {{ filteredTasks().length }} of {{ tasks().length }} tasks</p>
+  </div>
+
+  <p-table
+    [value]="filteredTasks()"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [tableStyle]="{ 'min-width': '60rem' }"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">ID <p-sortIcon field="id" /></th>
+        <th pSortableColumn="title">Title <p-sortIcon field="title" /></th>
+        <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
+        <th pSortableColumn="priority">Priority <p-sortIcon field="priority" /></th>
+        <th pSortableColumn="dueDate">Due Date <p-sortIcon field="dueDate" /></th>
+        <th pSortableColumn="assignedUserName">
+          Assigned To <p-sortIcon field="assignedUserName" />
+        </th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-task>
+      <tr [class.overdue]="isOverdue(task)">
+        <td>{{ task.id }}</td>
+        <td>
+          <strong>{{ task.title }}</strong>
+          @if (isOverdue(task)) {
+            <p-tag value="OVERDUE" severity="danger" styleClass="ml-2" />
+          }
+        </td>
+        <td>
+          <p-tag [value]="task.status" [severity]="getStatusSeverity(task.status)" />
+        </td>
+        <td>
+          <p-tag [value]="task.priority" [severity]="getPrioritySeverity(task.priority)" />
+        </td>
+        <td>{{ task.dueDate | date: 'MMM d, y' }}</td>
+        <td>{{ task.assignedUserName }}</td>
+        <td>
+          <p-button
+            label="View"
+            icon="pi pi-eye"
+            [outlined]="true"
+            size="small"
+            (onClick)="onTaskClick(task)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7" class="text-center">No tasks found</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

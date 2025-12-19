@@ -1,9 +1,9 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GatewayService {
   http: HttpClient = inject(HttpClient);
@@ -12,7 +12,19 @@ export class GatewayService {
     return this.http.get<T>(url);
   }
 
-  patch<T>(url: string, body: T) {
-    return this.http.patch(url, body);
+  post<T>(url: string, body: T): Observable<T> {
+    return this.http.post<T>(url, body);
+  }
+
+  put<T>(url: string, body: T): Observable<T> {
+    return this.http.put<T>(url, body);
+  }
+
+  patch<T>(url: string, body: Partial<T>): Observable<T> {
+    return this.http.patch<T>(url, body);
+  }
+
+  delete<T>(url: string): Observable<T> {
+    return this.http.delete<T>(url);
   }
 }

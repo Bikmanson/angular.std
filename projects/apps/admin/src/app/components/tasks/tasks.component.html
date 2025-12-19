@@ -1,0 +1,8 @@
+<div class="tasks-container">
+  <div class="header">
+    <h1>Task Management</h1>
+    <button pButton label="Add New Task" icon="pi pi-plus" routerLink="new"></button>
+  </div>
+
+  <app-table [data]="tasks" [headers]="headers" (rowClick)="onRowClick($event)"></app-table>
+</div>

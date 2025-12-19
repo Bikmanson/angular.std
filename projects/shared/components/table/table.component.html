@@ -7,8 +7,11 @@
     </ng-template>
     <ng-template #body let-item>
       <tr>
-        <td *ngFor="let header of headers | keyvalue: noSort"
-            (click)="onRowClick(item, header.key)">{{ item[header.key] }}
+        <td
+          *ngFor="let header of headers | keyvalue: noSort"
+          (click)="onRowClick(item, header.key)"
+        >
+          {{ item[header.key] }}
         </td>
       </tr>
     </ng-template>

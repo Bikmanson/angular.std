@@ -1,0 +1,147 @@
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  h1 {
+    margin: 0 0 2rem 0;
+    color: #333;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    .stat-card {
+      ::ng-deep {
+        .p-card-header {
+          padding: 1.5rem 1.5rem 0 1.5rem;
+        }
+
+        .p-card-body {
+          padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .p-card-footer {
+          padding: 0 1.5rem 1.5rem 1.5rem;
+          border-top: 1px solid #e0e0e0;
+          margin-top: 1rem;
+          padding-top: 1rem;
+        }
+      }
+
+      .stat-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+
+        i {
+          font-size: 2.5rem;
+        }
+      }
+
+      .stat-content {
+        text-align: center;
+
+        h3 {
+          margin: 0.5rem 0;
+          font-size: 0.9rem;
+          color: #666;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .stat-number {
+          margin: 0;
+          font-size: 2.5rem;
+          font-weight: bold;
+        }
+      }
+
+      .view-link {
+        color: #666;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #333;
+        }
+      }
+
+      &.users-card {
+        .stat-icon i {
+          color: #2196f3;
+        }
+        .stat-number {
+          color: #2196f3;
+        }
+      }
+
+      &.tasks-card {
+        .stat-icon i {
+          color: #9c27b0;
+        }
+        .stat-number {
+          color: #9c27b0;
+        }
+      }
+
+      &.completed-card {
+        .stat-icon i {
+          color: #4caf50;
+        }
+        .stat-number {
+          color: #4caf50;
+        }
+      }
+
+      &.progress-card {
+        .stat-icon i {
+          color: #ff9800;
+        }
+        .stat-number {
+          color: #ff9800;
+        }
+      }
+    }
+  }
+
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+
+    ::ng-deep {
+      .p-card-header h3 {
+        margin: 0;
+        color: #333;
+        font-size: 1.1rem;
+      }
+
+      .p-card-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .charts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

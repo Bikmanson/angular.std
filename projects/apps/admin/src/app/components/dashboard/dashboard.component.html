@@ -1,0 +1,75 @@
+<div class="dashboard-container">
+  <h1>Dashboard Overview</h1>
+
+  <div class="stats-grid">
+    <p-card class="stat-card users-card">
+      <ng-template pTemplate="header">
+        <div class="stat-icon">
+          <i class="pi pi-users"></i>
+        </div>
+      </ng-template>
+      <div class="stat-content">
+        <h3>Total Users</h3>
+        <p class="stat-number">{{ totalUsers() }}</p>
+      </div>
+      <ng-template pTemplate="footer">
+        <a routerLink="/admin/users" class="view-link">View All Users →</a>
+      </ng-template>
+    </p-card>
+
+    <p-card class="stat-card tasks-card">
+      <ng-template pTemplate="header">
+        <div class="stat-icon">
+          <i class="pi pi-list"></i>
+        </div>
+      </ng-template>
+      <div class="stat-content">
+        <h3>Total Tasks</h3>
+        <p class="stat-number">{{ totalTasks() }}</p>
+      </div>
+      <ng-template pTemplate="footer">
+        <a routerLink="/admin/tasks" class="view-link">View All Tasks →</a>
+      </ng-template>
+    </p-card>
+
+    <p-card class="stat-card completed-card">
+      <ng-template pTemplate="header">
+        <div class="stat-icon">
+          <i class="pi pi-check-circle"></i>
+        </div>
+      </ng-template>
+      <div class="stat-content">
+        <h3>Completed Tasks</h3>
+        <p class="stat-number">{{ completedTasks() }}</p>
+      </div>
+    </p-card>
+
+    <p-card class="stat-card progress-card">
+      <ng-template pTemplate="header">
+        <div class="stat-icon">
+          <i class="pi pi-spinner"></i>
+        </div>
+      </ng-template>
+      <div class="stat-content">
+        <h3>In Progress</h3>
+        <p class="stat-number">{{ inProgressTasks() }}</p>
+      </div>
+    </p-card>
+  </div>
+
+  <div class="charts-grid">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3>Tasks by Status</h3>
+      </ng-template>
+      <p-chart type="doughnut" [data]="taskStatusData" [options]="chartOptions" />
+    </p-card>
+
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3>Tasks by Priority</h3>
+      </ng-template>
+      <p-chart type="pie" [data]="taskPriorityData" [options]="chartOptions" />
+    </p-card>
+  </div>
+</div>

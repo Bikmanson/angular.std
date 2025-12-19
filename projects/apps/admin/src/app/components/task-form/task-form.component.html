@@ -1,0 +1,135 @@
+<div class="task-form-container">
+  <div class="header-actions">
+    <button
+      pButton
+      label="Back to Tasks"
+      icon="pi pi-arrow-left"
+      [outlined]="true"
+      (click)="goBack()"
+    ></button>
+  </div>
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="form-header">
+        <h1>{{ isEditMode ? 'Edit Task' : 'Create New Task' }}</h1>
+      </div>
+    </ng-template>
+
+    <app-alert *ngIf="showAlert" [type]="alertType" [message]="alertMessage"></app-alert>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="title">Title *</label>
+          <input
+            id="title"
+            type="text"
+            pInputText
+            formControlName="title"
+            placeholder="Enter task title"
+          />
+          <small class="error" *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+            Title is required
+          </small>
+        </div>
+
+        <div class="form-field">
+          <label for="description">Description *</label>
+          <textarea
+            id="description"
+            pTextarea
+            formControlName="description"
+            placeholder="Enter task description"
+            rows="4"
+          ></textarea>
+          <small
+            class="error"
+            *ngIf="form.get('description')?.invalid && form.get('description')?.touched"
+          >
+            Description is required
+          </small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="status">Status *</label>
+            <p-select
+              id="status"
+              [options]="statusOptions"
+              formControlName="status"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select status"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="priority">Priority *</label>
+            <p-select
+              id="priority"
+              [options]="priorityOptions"
+              formControlName="priority"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select priority"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="dueDate">Due Date *</label>
+            <p-datepicker
+              id="dueDate"
+              formControlName="dueDate"
+              placeholder="Select due date"
+              [showIcon]="true"
+            />
+            <small
+              class="error"
+              *ngIf="form.get('dueDate')?.invalid && form.get('dueDate')?.touched"
+            >
+              Due date is required
+            </small>
+          </div>
+
+          <div class="form-field">
+            <label for="assignedTo">Assign To *</label>
+            <p-select
+              id="assignedTo"
+              [options]="users"
+              formControlName="assignedTo"
+              optionLabel="name"
+              optionValue="id"
+              placeholder="Select user"
+            />
+            <small
+              class="error"
+              *ngIf="form.get('assignedTo')?.invalid && form.get('assignedTo')?.touched"
+            >
+              Assigned user is required
+            </small>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button
+            pButton
+            type="button"
+            label="Cancel"
+            severity="secondary"
+            [outlined]="true"
+            (click)="goBack()"
+          ></button>
+          <button
+            pButton
+            type="submit"
+            [label]="isEditMode ? 'Update Task' : 'Create Task'"
+            [disabled]="form.invalid"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>

@@ -1,0 +1,121 @@
+<p-toast />
+
+<div class="task-detail-container">
+  @if (isLoading()) {
+    <div class="loading">Loading task details...</div>
+  } @else if (task()) {
+    <div class="header-actions">
+      <p-button
+        label="Back to Tasks"
+        icon="pi pi-arrow-left"
+        [outlined]="true"
+        (onClick)="goBack()"
+      />
+    </div>
+
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="task-header">
+          <h1>{{ task()!.title }}</h1>
+          <div class="task-badges">
+            <p-tag [value]="task()!.status" [severity]="getStatusSeverity(task()!.status)" />
+            <p-tag [value]="task()!.priority" [severity]="getPrioritySeverity(task()!.priority)" />
+            @if (isOverdue()) {
+              <p-tag value="OVERDUE" severity="danger" />
+            }
+          </div>
+        </div>
+      </ng-template>
+
+      <div class="task-content">
+        <div class="task-info-grid">
+          <div class="info-item">
+            <label>Description</label>
+            <p>{{ task()!.description }}</p>
+          </div>
+
+          <div class="info-row">
+            <div class="info-item">
+              <label>Assigned To</label>
+              <p>{{ user()?.name || 'Loading...' }}</p>
+            </div>
+
+            <div class="info-item">
+              <label>Due Date</label>
+              <p>{{ task()!.dueDate | date: 'MMMM d, y' }}</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-item">
+              <label>Created At</label>
+              <p>{{ task()!.createdAt | date: 'MMMM d, y, h:mm a' }}</p>
+            </div>
+
+            @if (task()!.completedAt) {
+              <div class="info-item">
+                <label>Completed At</label>
+                <p>{{ task()!.completedAt | date: 'MMMM d, y, h:mm a' }}</p>
+              </div>
+            }
+          </div>
+        </div>
+
+        @if (task()!.status !== 'completed') {
+          <div class="action-section">
+            <p-button
+              label="Mark as Completed"
+              icon="pi pi-check"
+              severity="success"
+              (onClick)="markAsCompleted()"
+            />
+          </div>
+        }
+
+        <p-divider />
+
+        <div class="comments-section">
+          <h3>Comments ({{ task()!.comments?.length || 0 }})</h3>
+
+          @if (task()!.comments && task()!.comments!.length > 0) {
+            <div class="comments-list">
+              @for (comment of task()!.comments; track comment.id) {
+                <div class="comment-item">
+                  <div class="comment-header">
+                    <strong>{{ comment.userName }}</strong>
+                    <span class="comment-date">{{
+                      comment.createdAt | date: 'MMM d, y, h:mm a'
+                    }}</span>
+                  </div>
+                  <p class="comment-text">{{ comment.comment }}</p>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="no-comments">No comments yet. Be the first to add one!</p>
+          }
+
+          <div class="add-comment">
+            <h4>Add a Comment</h4>
+            <textarea
+              pTextarea
+              [(ngModel)]="newComment"
+              (ngModelChange)="newComment.set($event)"
+              placeholder="Write your comment here..."
+              rows="4"
+              class="comment-textarea"
+            ></textarea>
+            <p-button
+              label="Add Comment"
+              icon="pi pi-send"
+              (onClick)="addComment()"
+              [disabled]="!newComment().trim()"
+            />
+          </div>
+        </div>
+      </div>
+    </p-card>
+  } @else {
+    <div class="error">Task not found</div>
+  }
+</div>

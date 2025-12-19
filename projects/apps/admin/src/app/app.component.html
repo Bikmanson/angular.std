@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<div class="app-container">
+  <header class="app-header">
+    <div class="header-content">
+      <h1 class="app-title">Task Manager - Admin Panel</h1>
+      <nav class="app-nav">
+        <a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/admin/users" routerLinkActive="active">Users</a>
+        <a routerLink="/admin/tasks" routerLinkActive="active">Tasks</a>
+      </nav>
+    </div>
+  </header>
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
